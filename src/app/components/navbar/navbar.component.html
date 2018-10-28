@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
   <div class="container">
-    <a routerLink="/" routerLinkActive="router-link-active"  class="navbar-brand">Client Panel</a>
+    <a routerLink="/" routerLinkActive="router-link-active" class="navbar-brand">Client Panel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,11 +13,20 @@
       </ul>
 
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li *ngIf="!isLoggedIn && showRegister" class="nav-item">
           <a routerLink="/register" class="nav-link">Register</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!isLoggedIn && showRegister" class="nav-item">
           <a routerLink="/login" class="nav-link">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <span class="nav-link">Logged in as: <strong>{{ loggedInUser }}</strong></span>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a routerLink="/settings" class="nav-link">Settings</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a style="cursor: pointer;" (click)="onLogoutClick()" class="nav-link">Logout</a>
         </li>
       </ul>
     </div>
